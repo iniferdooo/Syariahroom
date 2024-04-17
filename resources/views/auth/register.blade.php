@@ -1,27 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <title>Register</title>
-</head>
-<body>
-<div class="navbar bg-white">
-  <div class="navbar-start">
-    
-  </div>
-  <div class="navbar-end">
-    <button class="btn btn-ghost btn-circle">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-    </button>
-    <button class="btn btn-ghost btn-circle">
-      <div class="indicator">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-        <span class="badge badge-xs badge-primary indicator-item"></span>
-      </div>
-    </button>
-  </div>
+@extends('master.layouts.auth')
+
+@section('title', 'Resgister | Bank Syariah Indonesia - UAE')
+
+@section('content')
+<div class="col-12 col-md-9 col-xl-7 col-xxxl-5 px-8 px-sm-0 pt-24 pb-48">
+    <a href="" class="auth-back">
+        <i class="iconly-Light-ArrowLeft"></i>
+    </a>
+    <h1 class="mb-0 mb-sm-24">Create Account</h1>
+    <p class="mt-sm-8 mt-sm-0 text-black-60">Please sign up to your personal account if you want to use all our premium
+    products.</p>
+
+    <form class="mt-16 mt-sm-32 mb-8" method="POST" action="{{route('register')}}">
+        @csrf
+        <div class="mb-24">
+            <label for="registerUsername" class="form-label">Nama Mitra</label>
+            <input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ old('name') }}" id="registerUsername" name="name">
+            @error('name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+
+        <div class="mb-24">
+            <label for="registerEmail" class="form-label">E-mail</label>
+            <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="registerEmail" name="email">
+            @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+
+        <div class="mb-24">
+          <label for="registerAddress" class="form-label">Alamat</label>
+          <input type="text" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" id="registerAddress" name="address">
+          @error('address')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+
+        <div class="mb-24">
+          <label for="registerNoHp" class="form-label">No Hp</label>
+          <input type="text" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" id="registerNoHp" name="phone">
+          @error('phone')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+
+        <div class="mb-24">
+            <label for="registerPassword" class="form-label">Password :</label>
+            <input type="password" class="form-control" id="registerPassword" name="password">
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+
+        <div class="mb-24">
+            <label for="registerConfirmPassword" class="form-label">Confirm Password :</label>
+            <input type="password" class="form-control" id="registerConfirmPassword" name="password_confirmation">
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">
+            Sign up
+        </button>
+    </form>
+
+    <div class="col-12 hp-form-info">
+        <span class="text-black-80 hp-text-color-dark-40 hp-caption me-4">Already have an account?</span>
+        <a class="text-primary-1 hp-text-color-dark-primary-2 hp-caption" href="{{ route('login') }}">Login</a>
+    </div>
+
+    <div class="col-12 hp-other-links mt-24">
+        <a href="javascript:;" class="text-black-80 hp-text-color-dark-40">Privacy Policy</a>
+        <a href="javascript:;" class="text-black-80 hp-text-color-dark-40">Term of use</a>
+    </div>
 </div>
-</body>
-</html>
+@endsection
